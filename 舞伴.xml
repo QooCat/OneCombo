@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="475db8f5-68c2-457d-b597-51d71460cd16" Name="舞伴" Enabled="true">
+    <Folders />
+    <Triggers>
+      <Trigger Enabled="true" Name="散伙" Id="eea7623c-f0fb-4621-9606-be0848be2495" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):4699:">
+        <Actions>
+          <Action OrderNumber="1" JsonEndpointExpression="https://du.shadiao.app/api.php?lang=zh_cn" JsonFiringExpression="Uninstall FF14:${_response}" LogLevel="-1" MouseX="" MouseY="" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="GenericJson">
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="Or">
+          <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+        </Condition>
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="true" Name="阿巴阿巴" Id="7d885606-d5cc-4017-9ab6-0496fd1d651d" RegularExpression="^Uninstall FF14:(.+)$">
+        <Actions>
+          <Action OrderNumber="1" LogLevel="-1" MouseX="" MouseY="" NamedCallbackName="DoTextCommand" NamedCallbackParam="/p $1 &lt;t&gt;&lt;se.1&gt;" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="true" Name="舞伴" Id="7cd97432-8c3c-4351-b4dc-185776ff0069" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):3E86:">
+        <Actions>
+          <Action OrderNumber="1" JsonEndpointExpression="https://chp.shadiao.app/api.php?lang=zh_cn" JsonFiringExpression="Uninstall FF14:${_response}" LogLevel="-1" MouseX="" MouseY="" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="GenericJson">
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="Or">
+          <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+        </Condition>
+        <Conditions />
+      </Trigger>
+    </Triggers>
+  </ExportedFolder>
+</TriggernometryExport>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="5abdec1f-0136-44ac-a414-b33f0bd4f070" Name="一键神经" Enabled="true">
+    <Folders />
+    <Triggers>
+      <Trigger Enabled="true" Name="退避毒鸡汤" Id="f366321a-c0ae-4d28-b839-e0d1908735cf" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):1D71:">
+        <Actions>
+          <Action OrderNumber="1" JsonEndpointExpression="https://du.shadiao.app/api.php?lang=zh_cn" JsonFiringExpression="Uninstall FF14:${_response}" LogLevel="-1" MouseX="" MouseY="" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="GenericJson">
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="Or">
+          <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+        </Condition>
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="true" Name="MT迷惑行为" Id="418d3419-03fd-4a4d-a25b-7b6a06f496ae" RegularExpression="^Uninstall FF14:(.+)$">
+        <Actions>
+          <Action OrderNumber="1" LogLevel="-1" MouseX="" MouseY="" NamedCallbackName="DoTextCommand" NamedCallbackParam="/p $1 &lt;2&gt;&lt;se.1&gt;" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="true" Name="挑衅彩虹屁" Id="937fdbf6-150c-4cd1-8355-fe3a2846387b" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):1D6D:">
+        <Actions>
+          <Action OrderNumber="1" JsonEndpointExpression="https://chp.shadiao.app/api.php?lang=zh_cn" JsonFiringExpression="Uninstall FF14:${_response}" LogLevel="-1" MouseX="" MouseY="" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="GenericJson">
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="Or">
+          <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+        </Condition>
+        <Conditions />
+      </Trigger>
+    </Triggers>
+  </ExportedFolder>
+</TriggernometryExport>

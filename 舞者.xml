@@ -1,0 +1,713 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder FFXIVJobFilterEnabled="True" FFXIVJobFilter="137438953472" Id="b9b919c0-4dc0-486a-b97c-216123cf7074" Name="舞者" Enabled="true">
+    <Folders>
+      <Folder Id="71daf18b-bcc5-44cb-970e-d231e509a9bb" Name="1.ONE" Enabled="true">
+        <Folders>
+          <Folder Id="e40b813c-0db7-41ba-9014-6751a57086ed" Name="Buff" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Name="探戈" Id="1d1d4921-c676-4ce4-85a5-7efe3911a652" RegularExpression="^.{14} 1[AE]:.{8}:(?&lt;CasterName&gt;.+?) (?&lt;type&gt;gains|loses) the effect of 进攻之探戈 from">
+                <Actions>
+                  <Action OrderNumber="1" LogLevel="-1" VariableOp="SetNumeric" VariableName="CD_探戈" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                    <Conditions />
+                  </Action>
+                  <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="探戈" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                    <Conditions />
+                  </Action>
+                  <Action OrderNumber="3" VariableName="探戈" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="loses" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                    <Conditions />
+                  </Action>
+                  <Action OrderNumber="4" VariableName="探戈" VariableExpression="0" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" ExecutionDelayExpression="20500">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                    <Conditions />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Sequential="True" Name="百花" Id="4055a345-a166-4896-8bf9-979541398347" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+?):3E8D:">
+                <Actions>
+                  <Action OrderNumber="1" LogLevel="-1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="03d7984e-43b6-4ee0-9447-09a74b71ebc1" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="Or" />
+                    <Conditions />
+                  </Action>
+                  <Action OrderNumber="2" LogLevel="-1" VariableOp="SetNumeric" VariableName="CD_百花" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="And" />
+                    <Conditions />
+                  </Action>
+                  <Action OrderNumber="3" LogLevel="-1" VariableOp="SetNumeric" VariableName="百花" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="Or" />
+                    <Conditions />
+                  </Action>
+                  <Action OrderNumber="4" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="逆瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="And" />
+                    <Conditions />
+                  </Action>
+                  <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:逆瀑泻:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="And" />
+                    <Conditions />
+                  </Action>
+                  <Action OrderNumber="6" LogLevel="-1" VariableName="百花" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" ExecutionDelayExpression="20500" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="Or" />
+                    <Conditions />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Sequential="True" Name="扇舞·急" Id="33cad971-3d29-4832-a6ba-3e29d4e54389" RegularExpression="^.{14} 1A:.{8}:(?&lt;CasterName&gt;.+?) gains the effect of 扇舞·急预备 from">
+                <Actions>
+                  <Action OrderNumber="1" LogLevel="-1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="03d7984e-43b6-4ee0-9447-09a74b71ebc1" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="And" />
+                    <Conditions />
+                  </Action>
+                  <Action OrderNumber="2" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="扇舞·急" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:扇舞·急:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" ExecutionDelayExpression="100" Asynchronous="False">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionGroup Enabled="true" Grouping="And">
+                        <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="逆瀑泻" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                        <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      </ConditionGroup>
+                      <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </Condition>
+                    <Conditions />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+            </Triggers>
+          </Folder>
+        </Folders>
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="ONE" Id="03d7984e-43b6-4ee0-9447-09a74b71ebc1" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):(?&lt;W&gt;(3E7[5678BC]|3E8[579B]|.*(标准舞步结束|技巧舞步结束))):">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 舞者 4 舞者 1" VariableOp="SetString" VariableName="百花连" VariableExpression="喷泉" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E75" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 舞者 4 舞者 1" VariableOp="SetString" VariableName="百花连" VariableExpression="瀑泻" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E76" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="3" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="升风车" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E7C" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="4" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="落血雨" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E76" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E78" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="5" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="坠喷泉" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E77" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E7B" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:百花连}" ExpressionTypeL="String" ExpressionR="坠喷泉" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </ConditionGroup>
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="6" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionGroup Enabled="true" Grouping="And">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionGroup Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E76" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E78" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </ConditionGroup>
+                  </ConditionGroup>
+                  <ConditionGroup Enabled="true" Grouping="And">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E7B" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    <ConditionSingle Enabled="true" ExpressionL="${var:百花连}" ExpressionTypeL="String" ExpressionR="瀑泻" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="7" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="喷泉" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionGroup Enabled="true" Grouping="And">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${var:百花连}" ExpressionTypeL="String" ExpressionR="喷泉" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E78" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_技巧}}" ExpressionTypeL="Numeric" ExpressionR="30000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  </ConditionGroup>
+                  <ConditionGroup Enabled="true" Grouping="And">
+                    <ConditionGroup Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E75" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E77" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </ConditionGroup>
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="8" VariableName="百花" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:瀑泻:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E7B" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="9" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:${var:DNC_Next}:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" ExecutionDelayExpression="200" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="技巧舞步结束" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="10" VariableOp="SetNumeric" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:剑舞:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:Powder_Gauge}" ExpressionTypeL="Numeric" ExpressionR="4" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="坠喷泉" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </ConditionGroup>
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionGroup Enabled="true" Grouping="Or">
+                        <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="瀑泻" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                        <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="喷泉" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      </ConditionGroup>
+                      <ConditionGroup Enabled="true" Grouping="Or">
+                        <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_百花}}" ExpressionTypeL="Numeric" ExpressionR="56000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                        <ConditionGroup Enabled="true" Grouping="And">
+                          <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_百花}}" ExpressionTypeL="Numeric" ExpressionR="48000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                          <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_技巧}}" ExpressionTypeL="Numeric" ExpressionR="115000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                        </ConditionGroup>
+                      </ConditionGroup>
+                    </ConditionGroup>
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${evar:探戈}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </ConditionGroup>
+                    <ConditionSingle Enabled="true" ExpressionL="${var:Cute_Gauge}" ExpressionTypeL="Numeric" ExpressionR="80" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${var:Cute_Gauge}" ExpressionTypeL="Numeric" ExpressionR="50" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="技巧舞步结束" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="升风车" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="11" VariableOp="SetNumeric" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:标准舞步:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_标准}}" ExpressionTypeL="Numeric" ExpressionR="28000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      <ConditionGroup Enabled="true" Grouping="Or">
+                        <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E87" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                        <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E89" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      </ConditionGroup>
+                    </ConditionGroup>
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionGroup Enabled="true" Grouping="Or">
+                        <ConditionSingle Enabled="true" ExpressionL="${evar:CD_标准}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                        <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_标准}}" ExpressionTypeL="Numeric" ExpressionR="27000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      </ConditionGroup>
+                      <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E87" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E89" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                    </ConditionGroup>
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="技巧舞步结束" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${var:Cute_Gauge}" ExpressionTypeL="Numeric" ExpressionR="80" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionGroup Enabled="true" Grouping="Or">
+                        <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="落血雨" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                        <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="升风车" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      </ConditionGroup>
+                      <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </ConditionGroup>
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="12" VariableOp="SetNumeric" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:技巧舞步:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:CD_技巧}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_技巧}}" ExpressionTypeL="Numeric" ExpressionR="117000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  </ConditionGroup>
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:CD_百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_百花}}" ExpressionTypeL="Numeric" ExpressionR="51000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  </ConditionGroup>
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="瀑泻" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="喷泉" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="13" VariableOp="SetNumeric" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:扇舞·序:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${evar:探戈}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:Powder_Gauge}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </ConditionGroup>
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${evar:探戈}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:Powder_Gauge}" ExpressionTypeL="Numeric" ExpressionR="3" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </ConditionGroup>
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E87" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E89" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="标准舞步结束|技巧舞步结束" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E8B" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="14" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="扇舞·急" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:扇舞·急:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E77" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_探戈}}" ExpressionTypeL="Numeric" ExpressionR="110000" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                    </ConditionGroup>
+                    <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E8B" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="15" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:进攻之探戈:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E77" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:CD_探戈}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_探戈}}" ExpressionTypeL="Numeric" ExpressionR="118500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_技巧}}" ExpressionTypeL="Numeric" ExpressionR="25000" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="16" VariableOp="SetNumeric" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:百花争艳:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:CD_百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_百花}}" ExpressionTypeL="Numeric" ExpressionR="58000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_技巧}}" ExpressionTypeL="Numeric" ExpressionR="80000" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${W}" ExpressionTypeL="String" ExpressionR="3E89" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="瀑泻" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    <ConditionSingle Enabled="true" ExpressionL="${var:DNC_Next}" ExpressionTypeL="String" ExpressionR="喷泉" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="坠喷泉" Id="e3d26811-353d-40b0-ad5e-bdd9256f0c6d" RegularExpression="^.{14} 1A:.{8}:(?&lt;CasterName&gt;.+?) gains the effect of 坠喷泉预备 from">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="坠喷泉" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" LogLevel="-1" VariableOp="SetString" VariableName="百花连" VariableExpression="坠喷泉" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_百花}}" ExpressionTypeL="Numeric" ExpressionR="3000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="逆瀑泻" Id="b35a7179-a446-46e4-8e98-bb113652c1f6" RegularExpression="^.{14} 1[AE]:.{8}:(?&lt;CasterName&gt;.+?) (?&lt;type&gt;gains|loses) the effect of 逆瀑泻预备 from">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="逆瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="c8884cdd-234f-4da0-aaf3-cae38aca84fd" Name="2.AOE" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="落刃雨" Id="bf7ac3a1-d8a6-459e-ad2d-7bf994a0568c" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):3E7A:">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:风车:${var:DNC_Hotbar}:${var:DNC_Hotbar_Aoe}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="风车" Id="67887cbb-2f87-469b-8aff-077b7e4422df" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):3E79:">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:落刃雨:${var:DNC_Hotbar}:${var:DNC_Hotbar_Aoe}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="升风车" Id="62e81bc8-0b65-4af4-9c7a-d06a112bf8a2" RegularExpression="^.{14} 1[AE]:.{8}:(?&lt;CasterName&gt;.+?) (?&lt;type&gt;gains|loses) the effect of (?:升风车预备) from">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:升风车:${var:DNC_Hotbar}:${var:DNC_Hotbar_Aoe}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" ExecutionDelayExpression="100" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:落刃雨:${var:DNC_Hotbar}:${var:DNC_Hotbar_Aoe}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="loses" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="落血雨" Id="78387c17-5b90-48aa-8af8-b99ec1793856" RegularExpression="^.{14} 1[AE]:.{8}:(?&lt;CasterName&gt;.+?) (?&lt;type&gt;gains|loses) the effect of (?:落血雨预备) from">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:落血雨:${var:DNC_Hotbar}:${var:DNC_Hotbar_Aoe}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" ExecutionDelayExpression="100" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:百花}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:风车:${var:DNC_Hotbar}:${var:DNC_Hotbar_Aoe}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="loses" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="09394e8e-6d36-47cc-a794-bfe581423daa" Name="3.跳舞" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="1.2.3.4" Id="eee47da7-b8f1-4410-bd06-464a66041e71" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;.+?):(3E7F|3E80|3E81|3E82):">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableOp="SetNumeric" VariableName="DNCOK_no" VariableExpression="${var:DNCOK_no}+1" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:${var:DNCOK_Skill${var:DNCOK_no${var:DNCOK_no}}}:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:DNCOK_no}" ExpressionTypeL="Numeric" ExpressionR="5" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:标准舞步:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:DNCOK_no}" ExpressionTypeL="Numeric" ExpressionR="3" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:标准舞步}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:技巧舞步:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:DNCOK_no}" ExpressionTypeL="Numeric" ExpressionR="5" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:标准舞步}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+              <ConditionSingle Enabled="true" ExpressionL="${evar:DNCOK_no}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="结束" Id="668c22e3-981d-4a18-9970-743b2e8a1a7b" RegularExpression="^.{14} 1E:.{8}:(?&lt;CasterName&gt;.+?) loses the effect of (标准舞步|技巧舞步) from">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableName="DNCOK_no" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" LogLevel="-1" VariableName="标准舞步" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="跳舞" Id="0b4a2e5c-e6c1-4969-acb5-ad77e46caaa3" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;.+?):(?&lt;bj&gt;3E7D|3E7E):" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableOp="SetNumeric" VariableName="CD_标准" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${bj}" ExpressionTypeL="String" ExpressionR="3E7D" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" LogLevel="-1" VariableOp="SetNumeric" VariableName="CD_技巧" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${bj}" ExpressionTypeL="String" ExpressionR="3E7E" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" LogLevel="-1" VariableOp="SetNumeric" VariableName="标准舞步" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${bj}" ExpressionTypeL="String" ExpressionR="3E7D" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" LogLevel="-1" VariableOp="SetNumeric" VariableName="DNCOK_no" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:${var:DNCOK_Skill${var:DNCOK_no1}}:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" ExecutionDelayExpression="200" Asynchronous="False">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="6" LogLevel="-1" MouseX="" MouseY="" TextAuraFontSize="9.07563" TextAuraFontName="宋体" TriggerId="668c22e3-981d-4a18-9970-743b2e8a1a7b" TriggerForce="true" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" ExecutionDelayExpression="15000" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="1a4b656a-2022-4ce5-8ddf-b5e433413d26" Name="杂项" Enabled="true">
+        <Folders>
+          <Folder Id="de400a23-64aa-4c69-aca3-9d8b3f2f20e9" Name="键位" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Name="Hotbar" Id="755a0476-a461-42a5-ac4a-237bcc2e1da9" RegularExpression=".*" PeriodRefire="Deny" RefirePeriodExpression="86400000" EditAutofire="True">
+                <Actions>
+                  <Action OrderNumber="1" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="DNC_Hotbar" VariableExpression="1" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="DNC_Hotbar_Num" VariableExpression="1" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="DNC_Hotbar_PlanB" VariableExpression="2" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="4" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="DNC_Hotbar_Aoe" VariableExpression="3" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="Hotbar Set" Id="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" RegularExpression="^SetHotbar:(?&lt;skill&gt;.+?):(?&lt;num1&gt;\d+):(?&lt;num2&gt;\d+)$">
+                <Actions>
+                  <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${skill} ${num1} ${num2}" NamedCallbackName="command" NamedCallbackParam="/hotbar set ${skill} ${num1} ${num2}" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="NamedCallback" Asynchronous="False">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+            </Triggers>
+          </Folder>
+        </Folders>
+        <Triggers>
+          <Trigger Enabled="true" Name="Reset" Id="b7351dff-915d-4832-8ca5-3891b5613720" RegularExpression="^.{15}21:.{8}:4000001[026]|^.{15}00:0039:距离战斗开始还有15秒！|^.{15}00:0839:“.*?”任务结束">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:瀑泻:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:风车:${var:DNC_Hotbar}:${var:DNC_Hotbar_Aoe}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="3" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" LogLevel="-1" VariableOp="SetString" VariableName="百花连" VariableExpression="瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" LogLevel="-1" VariableName="CD_百花" VariableExpression="瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="6" LogLevel="-1" VariableName="CD_技巧" VariableExpression="瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="7" LogLevel="-1" VariableName="CD_探戈" VariableExpression="瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="Break" Id="be0c16c6-ee6d-4167-8936-a27a21f5456e" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):(?&lt;W&gt;(3E7[5678BC]|3E8[579B]|.*(舞步结束))):" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:DNC_Next} ${var:DNC_Hotbar} ${var:DNC_Hotbar_PlanB}" NamedCallbackName="command" NamedCallbackParam="/hotbar set ${var:DNC_Next} ${var:DNC_Hotbar} ${var:DNC_Hotbar_PlanB}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:${var:DNC_Next}:${var:DNC_Hotbar}:${var:DNC_Hotbar_PlanB}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger" ExecutionDelayExpression="300" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" ExecutionDelayExpression="14500">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:瀑泻:${var:DNC_Hotbar}:${var:DNC_Hotbar_Num}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b33c4ba8-985f-4aeb-ad2a-5bb3c9a613df" TriggerText="SetHotbar:风车:${var:DNC_Hotbar}:${var:DNC_Hotbar_Aoe}" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="Markup" Id="5952664f-2476-44d7-be61-cf543305c59d" RegularExpression=".*" PeriodRefire="Deny" RefirePeriodExpression="86400000" EditAutofire="True">
+            <Actions>
+              <Action OrderNumber="1" ListVariableExpressionType="Numeric" VariableOp="SetString" VariableName="DNCOK_Skill1" VariableExpression="瀑泻" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" ListVariableExpressionType="Numeric" VariableOp="SetString" VariableName="DNCOK_Skill2" VariableExpression="喷泉" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableExpressionType="Numeric" VariableOp="SetString" VariableName="DNCOK_Skill3" VariableExpression="逆瀑泻" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" ListVariableExpressionType="Numeric" VariableOp="SetString" VariableName="DNCOK_Skill4" VariableExpression="坠喷泉" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" LogLevel="-1" VariableOp="SetString" VariableName="DNC_Next" VariableExpression="瀑泻" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="6" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 舞者 4 舞者 1" VariableOp="SetString" VariableName="百花连" VariableExpression="瀑泻" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="4" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="Ready" Id="fd88c84a-72d9-4c5d-999b-86708f826fd5" RegularExpression="^.{15}00:0039:距离战斗开始还有15秒！">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" MouseX="" MouseY="" NamedCallbackName="command" NamedCallbackParam="/ac 标准舞步" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="NamedCallback" ExecutionDelayExpression="500" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" LogLevel="-1" MouseX="" MouseY="" NamedCallbackName="command" NamedCallbackParam="/ac ${var:DNCOK_Skill${var:DNCOK_no1}}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="NamedCallback" ExecutionDelayExpression="2000" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" LogLevel="-1" MouseX="" MouseY="" NamedCallbackName="command" NamedCallbackParam="/ac ${var:DNCOK_Skill${var:DNCOK_no2}}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="NamedCallback" ExecutionDelayExpression="1500" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="Break2" Id="0ea6e3b6-0771-4da6-bdb7-5e2f5175cc7d" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):3E7[56]:" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 舞者 4 舞者 1" VariableOp="SetString" VariableName="百花连" VariableExpression="瀑泻" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable" ExecutionDelayExpression="14500">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="c5059c61-4e3f-4a9b-9116-0477cd219e27" Name="量谱" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="DNC" Id="4b32df35-a1f8-44f2-9196-2a046d13f8e3" RegularExpression="^.{14} 1F:.{8}:(?&lt;name&gt;.+?):(?&lt;gauge&gt;\w+?):(?&lt;dnc&gt;\w+?):">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableOp="SetNumeric" VariableName="DNCOK_no1" VariableExpression="${func:substring(1,1):${func:padleft(48,8):${gauge}}}" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" LogLevel="-1" VariableOp="SetNumeric" VariableName="DNCOK_no2" VariableExpression="${func:substring(7,1):${func:padleft(48,8):${dnc}}}" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" LogLevel="-1" VariableOp="SetNumeric" VariableName="DNCOK_no3" VariableExpression="${func:substring(5,1):${func:padleft(48,8):${dnc}}}" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" LogLevel="-1" VariableOp="SetNumeric" VariableName="DNCOK_no4" VariableExpression="${func:substring(3,1):${func:padleft(48,8):${dnc}}}" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" UseTTSTextExpression="${numeric:hex2dec(${func:substring(0,2):${gauge}})}" VariableOp="SetNumeric" VariableName="Cute_Gauge" VariableExpression="hex2dec(${func:substring(2,2):${func:padleft(48,8):${gauge}}})" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="6" VariableOp="SetNumeric" VariableName="Powder_Gauge" VariableExpression="${func:substring(5,1):${func:padleft(48,8):${gauge}}}" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].job}" ExpressionTypeL="String" ExpressionR="Dnc" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="475db8f5-68c2-457d-b597-51d71460cd16" Name="舞伴" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="散伙" Id="eea7623c-f0fb-4621-9606-be0848be2495" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):4699:">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="https://du.shadiao.app/api.php" JsonFiringExpression="Uninstall FF14:${_response}" LogLevel="-1" MouseX="" MouseY="" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="GenericJson">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="阿巴阿巴" Id="7d885606-d5cc-4017-9ab6-0496fd1d651d" RegularExpression="^Uninstall FF14:(.+)$">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" MouseX="" MouseY="" NamedCallbackName="DoTextCommand" NamedCallbackParam="/p $1 &lt;se.1&gt;" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="NamedCallback">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="舞伴" Id="7cd97432-8c3c-4351-b4dc-185776ff0069" RegularExpression="^.{14} 00:082b:(?&lt;name&gt;.+?)发动了“闭式舞姿”">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="https://chp.shadiao.app/api.php" JsonFiringExpression="Uninstall FF14:${_response}" LogLevel="-1" MouseX="" MouseY="" TextAuraFontSize="9" TextAuraFontName="宋体" PartyOrderPlayerName="" PartyOrderPartyOrder="" ActionType="GenericJson">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+    </Folders>
+    <Triggers />
+  </ExportedFolder>
+</TriggernometryExport>

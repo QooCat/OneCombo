@@ -1,0 +1,358 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder FFXIVJobFilterEnabled="True" FFXIVJobFilter="2097160" Id="9ba108b0-62a1-4b7d-b2e3-2b328ce244f6" Name="龙骑" Enabled="true">
+    <Folders>
+      <Folder Id="3480a619-fdd8-41eb-9141-aa143be0d837" Name="设置" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="Hotbar Set" Id="0d2bc7d6-30e2-47ed-b541-85585b17b362" RegularExpression="^SetHotbar:(?&lt;skill&gt;.+?):(?&lt;num1&gt;\d+):(?&lt;num2&gt;\d+)$">
+            <Actions>
+              <Action OrderNumber="0" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${skill} ${num1} ${num2}" NamedCallbackName="command" NamedCallbackParam="/hotbar set ${skill} ${num1} ${num2}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="Reset" Id="1a2d7a63-1902-4d92-b5e4-f61c70193ba5" RegularExpression="^.{14} 21:.{8}:4000001[02]|^.{15}00:0839:“.*?”任务结束">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="c4d4f069-ea4a-491c-bef2-c4902bb3fbba" TriggerForce="regexp" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="62a0f945-c1fa-41b6-a605-4bc66bcccf70" TriggerForce="regexp" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="0" VariableName="龙剑" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="75a4ac3c-90e8-4093-b85e-df59e59de4b3" TriggerText="SetHotbar:直线射击:${var:DNCOK_第几快捷栏}:${var:DNCOK_其第几位}" ActionType="Variable">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="loses" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="Hotbar" Id="00be1d89-a003-44b9-ac0c-dd02c7f996f9" RegularExpression=".*" PeriodRefire="Deny" RefirePeriodExpression="86400000" EditAutofire="True">
+            <Actions>
+              <Action OrderNumber="0" VariableOp="SetNumeric" VariableName="DRGOK_Hotbar" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="0" VariableOp="SetNumeric" VariableName="DRGOK_Hotbar_Num" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="0" VariableOp="SetNumeric" VariableName="DRGOK_Hotbar_Aoe" VariableExpression="3" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="0" VariableOp="SetString" VariableName="Dg_Next" VariableExpression="开膛枪" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="75a4ac3c-90e8-4093-b85e-df59e59de4b3" TriggerText="SetHotbar:直线射击:${var:DNCOK_第几快捷栏}:${var:DNCOK_其第几位}" ActionType="Variable">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="Break" Id="f463f5a8-ba1d-47db-9020-8b830b2154dc" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+):(?:4B|57|58|DE4|DE2|405F|4E|54):" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="1a2d7a63-1902-4d92-b5e4-f61c70193ba5" TriggerForce="regexp" ActionType="Trigger" ExecutionDelayExpression="15000" RefireInterrupt="True">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="0" VariableOp="SetString" VariableName="Dg_Next" VariableExpression="开膛枪" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="75a4ac3c-90e8-4093-b85e-df59e59de4b3" TriggerText="SetHotbar:直线射击:${var:DNCOK_第几快捷栏}:${var:DNCOK_其第几位}" ActionType="Variable">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="Break2" Id="4b4e952d-8121-4811-b63a-9fe0e012475c" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+?):(5A|56|1CE5|405D):">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="c4d4f069-ea4a-491c-bef2-c4902bb3fbba" TriggerForce="regexp" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="Reset" Id="c4d4f069-ea4a-491c-bef2-c4902bb3fbba" RegularExpression="">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:精准刺:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="5582ee2f-3349-4a4d-bfc6-fd5f9ffc89af" Name="2.AOE" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="山境酷刑" Id="180adead-ff3e-4ceb-92ca-784b7f5824b9" RegularExpression="^.{15}1[56]:.{8}:(?&lt;name&gt;.+):405D:">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:死天枪:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="死天枪" Id="bd64a437-f185-4078-b9e1-5c38d99547dd" RegularExpression="^.{15}1[56]:.{8}:(?&lt;name&gt;.+):56:">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:音速刺:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+              <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="62" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="音速刺" Id="60152ca9-700f-433b-8946-5956907c88ff" RegularExpression="^.{15}1[56]:.{8}:(?&lt;name&gt;.+):1CE5:">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:山境酷刑:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="72" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:死天枪:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="72" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="Break" Id="2fd6cce5-793e-4b20-99fe-5751a2804cd8" RegularExpression="^.{15}1[56]:.{8}:(?&lt;name&gt;.+):(?:56|1CE5|405D):" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="1a2d7a63-1902-4d92-b5e4-f61c70193ba5" TriggerForce="regexp" ActionType="Trigger" ExecutionDelayExpression="15000" RefireInterrupt="True">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="Reset" Id="62a0f945-c1fa-41b6-a605-4bc66bcccf70" RegularExpression="">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:死天枪:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="Break2" Id="640aeba4-b9b0-4b83-8b03-b4cba67607d0" RegularExpression="^.{15}1[56]:.{8}:(?&lt;name&gt;.+?):(?:5A|4B|57|58|4E|54|405F|DE2|DE4):">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="62a0f945-c1fa-41b6-a605-4bc66bcccf70" TriggerForce="regexp" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="7c1097a9-bf9a-4915-8249-1fa187cb405c" Name="1.ONE" Enabled="true">
+        <Folders>
+          <Folder Id="b4c9437d-0071-4235-9379-ffd06152a3e9" Name="龙牙龙爪" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Name="loses" Id="93acf554-dca9-46c9-8c68-26ebb3f204c6" RegularExpression="^.{27}(?&lt;name&gt;.+) loses the effect of (?:龙牙龙爪|龙尾大回旋)效果提高">
+                <Actions>
+                  <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:精准刺:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Name="gains" Id="d4503722-04e9-4999-83d3-817198fbd023" RegularExpression="^.{27}(?&lt;name&gt;.+?) gains the effect of (?&lt;skill&gt;龙牙龙爪|龙尾大回旋)效果提高">
+                <Actions>
+                  <Action OrderNumber="-1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:${skill}:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="100">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="-1" NamedCallbackName="command" NamedCallbackParam="/ac 武神枪" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:龙剑:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="NamedCallback" ExecutionDelayExpression="1000">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="60" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      <ConditionGroup Enabled="true" Grouping="Or">
+                        <ConditionSingle Enabled="true" ExpressionL="${evar:武神枪}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                        <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:武神枪}}" ExpressionTypeL="Numeric" ExpressionR="29500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      </ConditionGroup>
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="1" UseTTSTextExpression="侧" UseTTSRateExpression="2" TextAuraFontSize="9" TextAuraFontName="宋体" Enabled="False" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:DRGOK_身位tts}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${skill}" ExpressionTypeL="String" ExpressionR="龙牙龙爪" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" UseTTSTextExpression="背" UseTTSRateExpression="2" TextAuraFontSize="9" TextAuraFontName="宋体" Enabled="False" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:DRGOK_身位tts}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${skill}" ExpressionTypeL="String" ExpressionR="龙尾大回旋" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+            </Triggers>
+          </Folder>
+          <Folder Id="fef88604-6f4a-43da-8657-6182fb0f0b94" Name="樱花连" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Name="樱花怒放" Id="b1364403-b413-425f-bdc4-722e17f1067c" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+):58:">
+                <Actions>
+                  <Action OrderNumber="-1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:精准刺:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/ac 武神枪" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:龙剑:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="NamedCallback" ExecutionDelayExpression="1000">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="60" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      <ConditionGroup Enabled="true" Grouping="Or">
+                        <ConditionSingle Enabled="true" ExpressionL="${evar:武神枪}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                        <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:武神枪}}" ExpressionTypeL="Numeric" ExpressionR="29500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      </ConditionGroup>
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Name="开膛枪" Id="da663c98-df43-45da-b600-cf229dd5a68f" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+):57:">
+                <Actions>
+                  <Action OrderNumber="0" VariableOp="SetString" VariableName="Dg_Next" VariableExpression="贯通刺" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="75a4ac3c-90e8-4093-b85e-df59e59de4b3" TriggerText="SetHotbar:直线射击:${var:DNCOK_第几快捷栏}:${var:DNCOK_其第几位}" ActionType="Variable">
+                    <Condition Enabled="false" Grouping="And" />
+                  </Action>
+                  <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:精准刺:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="50" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:樱花怒放:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="50" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="0" NamedCallbackName="command" NamedCallbackParam="/ac 猛枪" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:龙剑:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="NamedCallback" ExecutionDelayExpression="1000">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="30" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      <ConditionGroup Enabled="true" Grouping="Or">
+                        <ConditionSingle Enabled="true" ExpressionL="${evar:猛枪}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                        <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:猛枪}}" ExpressionTypeL="Numeric" ExpressionR="89500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      </ConditionGroup>
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+            </Triggers>
+          </Folder>
+          <Folder Id="08fc2f42-1ba1-4189-ad11-1fb75ad1ff94" Name="直刺连" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Sequential="True" Name="贯通刺" Id="513680d8-a7ca-40b4-9eae-3a087912f192" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+):4E:">
+                <Actions>
+                  <Action OrderNumber="0" VariableOp="SetString" VariableName="Dg_Next" VariableExpression="开膛枪" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="75a4ac3c-90e8-4093-b85e-df59e59de4b3" TriggerText="SetHotbar:直线射击:${var:DNCOK_第几快捷栏}:${var:DNCOK_其第几位}" ActionType="Variable">
+                    <Condition Enabled="false" Grouping="And" />
+                  </Action>
+                  <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:直刺:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="26" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:精准刺:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="26" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="0" NamedCallbackName="command" NamedCallbackParam="/ac 龙剑" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:龙剑:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="NamedCallback" ExecutionDelayExpression="1000">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="6" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      <ConditionGroup Enabled="true" Grouping="Or">
+                        <ConditionSingle Enabled="true" ExpressionL="${evar:龙剑}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                        <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:龙剑}}" ExpressionTypeL="Numeric" ExpressionR="44500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      </ConditionGroup>
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Name="直刺" Id="a365bb26-1198-49e5-9503-585ba0103a0a" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+):54:">
+                <Actions>
+                  <Action OrderNumber="-1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:精准刺:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/ac 真北" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:龙剑:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="NamedCallback" ExecutionDelayExpression="1000">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="56" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+            </Triggers>
+          </Folder>
+        </Folders>
+        <Triggers>
+          <Trigger Enabled="true" Name="精准刺" Id="f379dc86-c7b7-4889-b285-637799f12e7c" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+):(?:4B|405F):">
+            <Actions>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:贯通刺:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="18" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="0" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="0d2bc7d6-30e2-47ed-b541-85585b17b362" TriggerText="SetHotbar:${var:Dg_Next}:${var:DRGOK_Hotbar}:${var:DRGOK_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="10">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="18" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+              <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="4" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="龙剑" Id="53b5b42d-98a5-44f2-9de1-e42b0e3c152c" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+):53:">
+            <Actions>
+              <Action OrderNumber="0" LogLevel="-1" VariableOp="SetNumeric" VariableName="龙剑" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="猛枪" Id="8de44eb7-cb67-4f85-9ca8-3358ba9deb5a" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+):55:">
+            <Actions>
+              <Action OrderNumber="0" LogLevel="-1" VariableOp="SetNumeric" VariableName="猛枪" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="武神枪" Id="eab2d394-0727-4c0c-9247-533d0d99fa16" RegularExpression="^.{15}15:.{8}:(?&lt;name&gt;.+):DE3:">
+            <Actions>
+              <Action OrderNumber="0" LogLevel="-1" VariableOp="SetNumeric" VariableName="武神枪" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+    </Folders>
+    <Triggers />
+  </ExportedFolder>
+</TriggernometryExport>

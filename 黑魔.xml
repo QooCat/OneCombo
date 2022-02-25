@@ -1,0 +1,323 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder FFXIVJobFilterEnabled="True" FFXIVJobFilter="16777216" Id="f27891cb-db13-4c53-a06b-86eae0b89ba5" Name="黑魔" Enabled="false">
+    <Folders>
+      <Folder Id="fb11de2e-c44d-4eff-ba98-7afe85e1df61" Name="设置" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="改变快捷栏" Id="a5759836-96da-4ccb-a099-21ea579bd149" RegularExpression="^SetHotbar:(?&lt;skill&gt;.+?):(?&lt;num1&gt;\d+):(?&lt;num2&gt;\d+)$">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${skill} ${num1} ${num2}" NamedCallbackName="command" NamedCallbackParam="/hotbar set ${skill} ${num1} ${num2}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="键位" Id="bedc1525-073f-413e-b9b5-b8ee213049e7" RegularExpression=".*" PeriodRefire="Deny" RefirePeriodExpression="86400000" EditAutofire="True">
+            <Actions>
+              <Action OrderNumber="1" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="BLM_Hotbar" VariableExpression="1" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="BLM_Hotbar_Num" VariableExpression="2" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="BLM_Hotbar_Aoe" VariableExpression="5" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="BLM_Hotbar_Star" VariableExpression="2" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="BLM_Hotbar_Star_Num" VariableExpression="3" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="Reset" Id="6b654948-b61c-4b6d-846f-4c4b7fa62e4c" RegularExpression="^.{15}21:.{8}:4000001[02]|^.{15}00:0039:距离战斗开始还有15秒！|^.{15}00:0839:“.*?”任务结束">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableName="即刻咏唱" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" LogLevel="-1" VariableName="魔泉" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="85c374db-1d46-432b-85be-00e181d71172" Name="1234" Enabled="true">
+        <Folders>
+          <Folder Id="5074fadf-a812-4f06-8b99-f0a8504f57c4" Name="Buff" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Name="魔泉" Id="286f73a0-a6e2-4a62-81cd-9666bb202df9" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):9E:">
+                <Actions>
+                  <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:炽炎:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="And">
+                      <ConditionSingle Enabled="false" ExpressionL="${var:冰火}" ExpressionTypeL="String" ExpressionR="03" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="魔泉" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" LogLevel="-1" VariableName="魔泉" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" ExecutionDelayExpression="179000">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Name="三连" Id="82fa292b-4555-4cda-9367-7408f2e54052" RegularExpression="^.{14} 1[AE]:.{8}:(?&lt;CasterName&gt;.+?) (?&lt;type&gt;gains|loses) the effect of (?:三连咏唱) from">
+                <Actions>
+                  <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="三连" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="75a4ac3c-90e8-4093-b85e-df59e59de4b3" TriggerText="SetHotbar:直线射击:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" VariableName="三连" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="75a4ac3c-90e8-4093-b85e-df59e59de4b3" TriggerText="SetHotbar:直线射击:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="loses" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Name="即刻" Id="4410465a-a9b6-499b-856d-d9a3029926a8" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):1D89:">
+                <Actions>
+                  <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:绝望:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:冰火}" ExpressionTypeL="String" ExpressionR="03" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="即刻咏唱" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" LogLevel="-1" VariableName="即刻咏唱" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" ExecutionDelayExpression="59000">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Name="火苗" Id="6504986c-1435-4f9f-801a-1095ca66e445" RegularExpression="^.{14} 1[AE]:.{8}:(?&lt;CasterName&gt;.+?) (?&lt;type&gt;gains|loses) the effect of 火苗 from">
+                <Actions>
+                  <Action OrderNumber="1" LogLevel="-1" VariableOp="SetNumeric" VariableName="火苗" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" LogLevel="-1" VariableName="火苗" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="loses" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+            </Triggers>
+          </Folder>
+        </Folders>
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="炽炎" Id="d01cf19b-7113-4f83-8405-82ce599e6a01" RegularExpression="^.{14} 1[45]:(.{8}:(?&lt;CasterName&gt;[^:]+?):DF9:)|(DF9:(?&lt;CasterName&gt;[^:]+?) starts)">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:火炎:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="10">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:Ice}" ExpressionTypeL="String" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:绝望:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionGroup Enabled="true" Grouping="And">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:三连}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].currentmp}" ExpressionTypeL="String" ExpressionR="3200" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].currentmp}" ExpressionTypeL="String" ExpressionR="5200" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:即刻咏唱:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].currentmp}" ExpressionTypeL="String" ExpressionR="3200" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:即刻咏唱}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:三连}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:爆炎:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:火苗}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].currentmp}" ExpressionTypeL="String" ExpressionR="3200" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="火炎" Id="2a9c477f-1bb1-4e73-bb0c-11e6db196308" RegularExpression="^.{14} 14:8D:(?&lt;CasterName&gt;[^:]+?) starts using 火炎">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:闪雷:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:异言:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:通晓}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="绝望" Id="38a6de17-ddbd-4cab-8b53-fec9dd04e7d8" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):4079:">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:冰封:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:魔泉:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:魔泉}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="冰封" Id="a6186a69-566e-4227-b351-d04c89b7cdc2" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):9[5A]:">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:闪雷:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:通晓}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:异言:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:通晓}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:灵极魂:${var:BLM_Hotbar_Star}:${var:BLM_Hotbar_Star_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="爆炎" Id="3987d830-7fa1-4424-b1cd-eab448587a8f" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):98:">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:星灵移位:${var:BLM_Hotbar_Star}:${var:BLM_Hotbar_Star_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:激情咏唱:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].currentmp}" ExpressionTypeL="String" ExpressionR="9600" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:炽炎:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="300">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:绝望:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionGroup Enabled="true" Grouping="And">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:三连}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].currentmp}" ExpressionTypeL="String" ExpressionR="3200" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].currentmp}" ExpressionTypeL="String" ExpressionR="5200" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:即刻咏唱:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].currentmp}" ExpressionTypeL="String" ExpressionR="3200" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:即刻咏唱}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="暴雷" Id="4531aa73-3672-4202-9ca7-f4efd6d89163" RegularExpression="^.{14} 1[45]:(.{8}:(?&lt;CasterName&gt;[^:]+?):99:)|(99:(?&lt;CasterName&gt;[^:]+?) starts)">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:冰澈:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:冰火}" ExpressionTypeL="String" ExpressionR="FD" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:炽炎:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:冰火}" ExpressionTypeL="String" ExpressionR="03" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:爆炎:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" Enabled="False" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:火苗}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="冰澈" Id="39bd0124-0c2e-4f9a-8701-82ee49011e05" RegularExpression="^.{14} 1[45]:(.{8}:(?&lt;CasterName&gt;[^:]+?):DF8:)|(DF8:(?&lt;CasterName&gt;[^:]+?) starts)">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:爆炎:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="异言" Id="551d6db2-c9e2-4e6c-86ed-2f756d0bb532" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):407B:">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="a5759836-96da-4ccb-a099-21ea579bd149" TriggerText="SetHotbar:闪雷:${var:BLM_Hotbar}:${var:BLM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="false" ExpressionL="${var:冰火}" ExpressionTypeL="String" ExpressionR="FD" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="false" ExpressionL="${var:通晓}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="b8860043-eb2d-42f6-9179-437b27f0001a" Name="量谱" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="量谱" Id="5234718d-94fd-412c-9ba2-f97f6a6a90f4" RegularExpression="^.{14} 1F:.{8}:(?&lt;name&gt;[^:]+?):\w+?:(?&lt;gauge&gt;\w+?):(?&lt;yu&gt;\w+?):">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="Ice" VariableExpression="${func:substring(3,1):${func:padleft(48,8):${gauge}}}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="通晓" VariableExpression="${func:substring(1,1):${func:padleft(48,8):${gauge}}}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" VariableOp="SetString" VariableName="冰火" VariableExpression="${func:substring(4,2):${func:padleft(48,8):${gauge}}}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" VariableOp="SetNumeric" VariableName="天语" VariableExpression="${func:substring(7,1):${func:padleft(48,8):${yu}}}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or">
+                  <ConditionSingle Enabled="false" ExpressionL="${evar:在跳了在跳了}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+              <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].job}" ExpressionTypeL="String" ExpressionR="Blm" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+    </Folders>
+    <Triggers />
+  </ExportedFolder>
+</TriggernometryExport>

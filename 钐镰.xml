@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder FFXIVJobFilterEnabled="True" FFXIVJobFilter="274877906944" Id="47411cee-3da7-40ac-a70c-d39750e2cd56" Name="钐镰" Enabled="false">
+    <Folders>
+      <Folder Id="4bd750df-c032-494d-b4f5-4ef6cf5ec0ac" Name="5.Plugin" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="Reset" Id="0128fb74-58d8-4da9-8400-421c7ade6797" RegularExpression="^.{15}(?:\w+ |)21:.{8}:4000001[026]|^.{15}(?:\w+ |)00:0039::距离战斗开始还有15秒！|^.{15}(?:\w+ |)00::0839::“.*?”任务结束">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:镰切:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:旋转镰:${var:RPR_Hotbar}:${var:RPR_Hotbar_O}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="3" TextAuraFontSize="9.07563" TextAuraFontName="宋体" TriggerId="a2619abf-259c-4a92-8c3a-600657bae361" TriggerForce="true" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="Break" Id="d30ce034-de3e-45f3-bbfc-1565aba90958" RegularExpression="^.{15}(?:\w+ |)1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):5F3[567]:" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:RPR_Next} ${var:RPR_Hotbar} ${var:RPR_Hotbar_PlanB}" NamedCallbackName="command" NamedCallbackParam="/hotbar set ${var:RPR_Next} ${var:RPR_Hotbar} ${var:RPR_Hotbar_PlanB}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:旋转镰:${var:RPR_Hotbar}:${var:RPR_Hotbar_O}" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetString" VariableName="RPR_Next" VariableExpression="镰切" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" ExecutionDelayExpression="29500">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:镰切:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:镰切:${var:RPR_Hotbar}:${var:RPR_Hotbar_B}" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Name="Mark" Id="a2619abf-259c-4a92-8c3a-600657bae361" RegularExpression=".*" PeriodRefire="Deny" RefirePeriodExpression="86400000" EditAutofire="True">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetString" VariableName="RPR_Next" VariableExpression="镰切" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="CD_魂力切" VariableExpression="0" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" VariableOp="SetNumeric" VariableName="CD_死亡暗影" VariableExpression="0" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="Break-Aoe" Id="94c20989-afd6-4a4c-b002-cc762e7d0e8d" RegularExpression="^.{15}(?:\w+ |)1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):5F3[89]:" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:镰切:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:镰切:${var:RPR_Hotbar}:${var:RPR_Hotbar_B}" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="3" VariableOp="SetString" VariableName="RPR_AOE" VariableExpression="旋转镰" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" ExecutionDelayExpression="29500" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" VariableOp="SetNumeric" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:旋转镰:${var:RPR_Hotbar}:${var:RPR_Hotbar_O}" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="b9ce5730-fda3-42f9-9304-446f3aee452c" Name="6.Hotbar" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="Hotbar" Id="f59d0fa9-7675-42bb-84ee-d0930f4d36be" RegularExpression=".*" PeriodRefire="Deny" RefirePeriodExpression="86400000" EditAutofire="True">
+            <Actions>
+              <Action OrderNumber="1" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="RPR_Hotbar" VariableExpression="1" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="RPR_Hotbar_A" VariableExpression="1" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="RPR_Hotbar_B" VariableExpression="2" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="RPR_Hotbar_O" VariableExpression="3" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="Hotbar Set" Id="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" RegularExpression="^SetHotbar:(?&lt;skill&gt;.+?):(?&lt;num1&gt;\d+):(?&lt;num2&gt;\d+)$">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${skill} ${num1} ${num2}" NamedCallbackName="command" NamedCallbackParam="/hotbar set ${skill} ${num1} ${num2}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="d25af665-66cc-4576-b94e-4c7388d07052" Name="1.One" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="ONE-B" Id="1ed6b6fe-4480-40c2-94ab-ac73f4cdb1d0" RegularExpression="^.{15}(?:\w+ |)1[56]:.{8}:(?&lt;CasterName&gt;.+?):5F3[567]:">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:${var:RPR_Next}:${var:RPR_Hotbar}:${var:RPR_Hotbar_B}" ActionType="Trigger" ExecutionDelayExpression="250" Asynchronous="False">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="ONE" Id="ae46f4a5-057b-4166-980b-a91402660b76" RegularExpression="^.{15}(?:\w+ |)1[56]:.{8}:(?&lt;CasterName&gt;.+?):(?&lt;one&gt;(5F3[567ACEF])):" PeriodRefire="Deny" RefirePeriodExpression="50">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="CD_魂力切" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${one}" ExpressionTypeL="String" ExpressionR="5F3C" ExpressionTypeR="String" ConditionType="RegexMatch" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="CD_死亡暗影" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${one}" ExpressionTypeL="String" ExpressionR="5F3A" ExpressionTypeR="String" ConditionType="RegexMatch" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" VariableOp="SetString" VariableName="RPR_Next" VariableExpression="镰切" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${one}" ExpressionTypeL="String" ExpressionR="5F37" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionGroup Enabled="true" Grouping="And">
+                    <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="30" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                    <ConditionSingle Enabled="true" ExpressionL="${one}" ExpressionTypeL="String" ExpressionR="5F36" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  </ConditionGroup>
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" VariableOp="SetString" VariableName="RPR_Next" VariableExpression="盈月切" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${one}" ExpressionTypeL="String" ExpressionR="5F35" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="5" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="5" VariableOp="SetString" VariableName="RPR_Next" VariableExpression="地狱切" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${one}" ExpressionTypeL="String" ExpressionR="5F36" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="30" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="6" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:${var:RPR_Next}:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger" ExecutionDelayExpression="200" Asynchronous="False">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="7" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:死亡暗影:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_魂力切}}" ExpressionTypeL="Numeric" ExpressionR="24500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${one}" ExpressionTypeL="String" ExpressionR="5F3A" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="10" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_死亡暗影}}" ExpressionTypeL="Numeric" ExpressionR="25000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="8" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:魂力切:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${one}" ExpressionTypeL="String" ExpressionR="5F3A" ExpressionTypeR="String" ConditionType="RegexMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="60" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_魂力切}}" ExpressionTypeL="Numeric" ExpressionR="27000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="9" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:血影迷踪:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger" ExecutionDelayExpression="10" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:灵魂}" ExpressionTypeL="Numeric" ExpressionR="50" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="3f39457a-de5c-49fc-ba3c-c27a089348b9" Name="4.Gauge" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="Reap" Id="16796e9f-8e28-436e-887c-1feaeeab471d" RegularExpression="^.{15}(?:\w+ |)1F:.{8}:(?&lt;gauge&gt;\w+?):(?&lt;dnc&gt;\w+?):">
+            <Actions>
+              <Action OrderNumber="1" UseTTSTextExpression="${numeric:hex2dec(${func:substring(0,2):${gauge}})}" VariableOp="SetNumeric" VariableName="灵魂" VariableExpression="hex2dec(${func:substring(4,2):${func:padleft(48,8):${gauge}}})" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="And" />
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="e878f110-8e23-48bf-ab45-474ca78e91e3" Name="3.收割" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="收割" Id="538cbb22-08bd-4b7b-be5e-ebc23d6e1ff7" RegularExpression="^.{15}(?:\w+ |)1[56]:.{8}:(?&lt;CasterName&gt;.+?):(?&lt;ge&gt;5F4[5678]):" PeriodRefire="Deny" RefirePeriodExpression="50">
+            <Actions>
+              <Action OrderNumber="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:示众:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${ge}" ExpressionTypeL="String" ExpressionR="5F4[56]" ExpressionTypeR="String" ConditionType="RegexMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="70" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:绞首:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${ge}" ExpressionTypeL="String" ExpressionR="5F47" ExpressionTypeR="String" ConditionType="RegexMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="70" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:断头:${var:RPR_Hotbar}:${var:RPR_Hotbar_O}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${ge}" ExpressionTypeL="String" ExpressionR="5F48" ExpressionTypeR="String" ConditionType="RegexMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="70" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:${var:RPR_Next}:${var:RPR_Hotbar}:${var:RPR_Hotbar_A}" ActionType="Trigger" ExecutionDelayExpression="200">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="70" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:${var:RPR_Aoe}:${var:RPR_Hotbar}:${var:RPR_Hotbar_O}" ActionType="Trigger" ExecutionDelayExpression="200">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="70" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="479374dc-c469-44dd-aedf-75b3f3662bd6" Name="2.Aoe" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="AOE" Id="13a46fb3-e631-46f9-a418-982c5a68addf" RegularExpression="^.{15}(?:\w+ |)1[56]:.{8}:(?&lt;CasterName&gt;.+?):(?&lt;aoe&gt;(5F3[89BD]|5F40)):" PeriodRefire="Deny" RefirePeriodExpression="50">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="CD_魂力切" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${aoe}" ExpressionTypeL="String" ExpressionR="5F3D" ExpressionTypeR="String" ConditionType="RegexMatch" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="CD_死亡暗影" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${aoe}" ExpressionTypeL="String" ExpressionR="5F3B" ExpressionTypeR="String" ConditionType="RegexMatch" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" VariableOp="SetString" VariableName="RPR_Aoe" VariableExpression="旋转镰" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${aoe}" ExpressionTypeL="String" ExpressionR="5F39" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" VariableOp="SetString" VariableName="RPR_Aoe" VariableExpression="梦魇镰" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${aoe}" ExpressionTypeL="String" ExpressionR="5F38" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="45" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:${var:RPR_Aoe}:${var:RPR_Hotbar}:${var:RPR_Hotbar_O}" ActionType="Trigger" ExecutionDelayExpression="200" Asynchronous="False">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="false" ExpressionL="${evar:对称}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="false" ExpressionL="${evar:非对称}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="false" ExpressionL="${one}" ExpressionTypeL="String" ExpressionR="3E84|3F4[1234]" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="6" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:死亡螺旋:${var:RPR_Hotbar}:${var:RPR_Hotbar_O}" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_魂力切}}" ExpressionTypeL="Numeric" ExpressionR="24500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${aoe}" ExpressionTypeL="String" ExpressionR="5F3B" ExpressionTypeR="String" ConditionType="RegexNotMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="35" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_死亡暗影}}" ExpressionTypeL="Numeric" ExpressionR="25000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="7" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:魂力镰:${var:RPR_Hotbar}:${var:RPR_Hotbar_O}" ActionType="Trigger" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${aoe}" ExpressionTypeL="String" ExpressionR="5F3B" ExpressionTypeR="String" ConditionType="RegexMatch" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="65" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:CD_魂力切}}" ExpressionTypeL="Numeric" ExpressionR="27000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="8" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="208e45ae-ed45-4bb7-b7a5-8b82a66ce58a" TriggerText="SetHotbar:狰狞扫荡:${var:RPR_Hotbar}:${var:RPR_Hotbar_O}" ActionType="Trigger" ExecutionDelayExpression="10" Asynchronous="False">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:灵魂}" ExpressionTypeL="Numeric" ExpressionR="50" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="55" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+    </Folders>
+    <Triggers />
+  </ExportedFolder>
+</TriggernometryExport>

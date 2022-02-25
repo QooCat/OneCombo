@@ -1,0 +1,394 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder FFXIVJobFilterEnabled="True" FFXIVJobFilter="67108864" Id="83b2296c-37fa-41e6-893a-e281b6f820e6" Name="召唤" Enabled="true">
+    <Folders>
+      <Folder Id="e9ada224-5a54-4697-9f3b-fede29c032b4" Name="设置" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="设置" Id="988cbe2b-e488-4b0a-8bc7-6ca76aec0627" RegularExpression=".*" PeriodRefire="Deny" RefirePeriodExpression="86400000" EditAutofire="True">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="SMN_Hotbar" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="SMN_Hotbar_Num" VariableExpression="2" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="3" VariableOp="SetNumeric" VariableName="SMN_Hotbar_Bird" VariableExpression="2" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="4" VariableOp="SetNumeric" VariableName="SMN_Hotbar_Aoe" VariableExpression="3" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="5" VariableOp="SetNumeric" VariableName="灵攻I" VariableExpression="2" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="6" VariableOp="SetNumeric" VariableName="灵攻II" VariableExpression="2" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="true" Name="改变快捷栏" Id="b1a17282-1f8c-4e0d-a752-ccc48d553d04" RegularExpression="^SetHotbar:(?&lt;skill&gt;.+?):(?&lt;num1&gt;\d+):(?&lt;num2&gt;\d+)$">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${skill} ${num1} ${num2}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="GenericJson" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="false" Name="Break-AOE" Id="824ae680-11fe-4f35-9ed0-a80b80841391" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):(?&lt;shan&gt;(1D3[BCD])|1D40):" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableOp="SetString" VariableName="SAM_Next" VariableExpression="刃风" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:刃风:${var:SAM_Hotbar}:${var:SAM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="3" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:风雅:${var:SAM_Hotbar}:${var:SAM_Hotbar_Aoe}" ActionType="Trigger" ExecutionDelayExpression="14500">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="Reset2" Id="6b731448-b5b3-433a-b1f4-33f92d30d2e6" RegularExpression="(?&lt;name&gt;[^:]+?)的职业转换成了“召唤师”。">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableOp="SetString" VariableName="SAM_Next" VariableExpression="刃风" TextAuraFontSize="9.07563" TextAuraFontName="宋体" Enabled="False" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" VariableOp="SetString" VariableName="SAM_Next" VariableExpression="刃风" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:刃风:${var:SAM_Hotbar}:${var:SAM_Hotbar_Num}" Enabled="False" ActionType="Trigger" ExecutionDelayExpression="300">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:GNBOK_Next}" ExpressionTypeL="String" ExpressionR="狙击弹" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="3" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:风雅:${var:SAM_Hotbar}:${var:SAM_Hotbar_Aoe}" Enabled="False" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="false" Name="Break" Id="6ef448b6-71fa-455e-a3d6-798f276f8072" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):(?&lt;shan&gt;(1D3[56789AF]|1D4B)):" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:风雅:${var:SAM_Hotbar}:${var:SAM_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:刃风:${var:SAM_Hotbar}:${var:SAM_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="14500">
+                <Condition Enabled="false" Grouping="And" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="false" Sequential="True" Name="Reset" Id="255f2869-aded-44e7-95cb-37d8d0bf8236" RegularExpression="^.{15}21:.{8}:4000001[02]|^.{15}00:0039:距离战斗开始还有15秒！|^.{15}00:0839:“.*?”任务结束">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="雪月花" VariableExpression="0" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" VariableName="CD_止水" VariableExpression="0" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="3" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:刃风:$${var:SAM_Hotbar}:${var:SAM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:GNBOK_Next}" ExpressionTypeL="String" ExpressionR="狙击弹" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="4" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:风雅:${var:SAM_Hotbar}:${var:SAM_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="And" />
+            <Conditions />
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="a939967b-4970-4b7d-b237-24b8e2bc8e06" Name="#灵攻" Enabled="false">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="*灵攻II" Id="9a93eeff-75c6-4c2c-9db8-bbda91c41855" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):41A0:" Scheduling="FromLastAction">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="灵攻II" VariableExpression="${var:灵攻II}+1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="54faafac-665f-43b7-a7d1-bcaf827bffc0" TriggerText="SetHotbar:血溅:${var:SMOK_UsingHotbar}:1" ActionType="Variable" ExecutionDelayExpression="29000">
+                <Condition Enabled="false" Grouping="Or">
+                  <ConditionSingle Enabled="false" ExpressionL="${var:灵攻I}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="*灵攻I" Id="bf0da100-7485-45a6-807b-29afbabebe21" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):419F:" Scheduling="FromLastAction">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="灵攻I" VariableExpression="max(${_systemtimems},${var:灵攻I})+30000" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerText="SetHotbar:血溅:${var:SMOK_UsingHotbar}:1" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or">
+                  <ConditionSingle Enabled="false" ExpressionL="${var:灵攻I}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="附体" Id="4d11c941-2999-4f4a-bf47-80a030e03a5d" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):DFD:" Scheduling="FromLastAction">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="龙神附体" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="54faafac-665f-43b7-a7d1-bcaf827bffc0" TriggerText="SetHotbar:血溅:${var:SMOK_UsingHotbar}:1" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" VariableName="龙神附体" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="54faafac-665f-43b7-a7d1-bcaf827bffc0" TriggerText="SetHotbar:血溅:${var:SMOK_UsingHotbar}:1" ActionType="Variable" ExecutionDelayExpression="10000">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+            <Conditions />
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="dc2f96ed-624c-4748-937b-20052bf832c7" Name="#单体" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="One" Id="576f854d-fcdc-4558-82b9-cef726f029ba" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):(?&lt;Smn&gt;(AC|B5|1D0[25]|40A5|419F|41A0|407[CE]|408[234]|DF[ABCD])):">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="灵攻I" VariableExpression="max(${_systemtimems},${var:灵攻I})+30000" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerText="SetHotbar:血溅:${var:SMOK_UsingHotbar}:1" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="419F" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="灵攻II" VariableExpression="max(${_systemtimems},${var:灵攻II})+30000" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerText="SetHotbar:血溅:${var:SMOK_UsingHotbar}:1" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="41A0" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="3" LogLevel="-1" VariableOp="SetNumeric" VariableName="三灾" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="DFC" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="4" LogLevel="-1" VariableOp="SetNumeric" VariableName="附体" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="DFD" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="5" LogLevel="-1" VariableOp="SetNumeric" VariableName="能量吸收" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="407C" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="407E" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="6" LogLevel="-1" VariableOp="SetNumeric" VariableName="溃烂爆发" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="B5" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="DFA" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="7" LogLevel="-1" VariableOp="SetNumeric" VariableName="龙神迸发" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="1D05" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="4084" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="8" LogLevel="-1" VariableName="三灾" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="DFD" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="40A5" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="9" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" VariableOp="SetString" VariableName="鸟连" VariableExpression="毁灭" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:毁荡:${var:SMN_Hotbar}:${var:SMN_Hotbar_Num}" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="40A5" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionGroup Enabled="true" Grouping="And">
+                    <ConditionSingle Enabled="true" ExpressionL="${var:龙鸟}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${var:召唤}" ExpressionTypeL="Numeric" ExpressionR="3" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="4083" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="10" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" VariableOp="SetString" VariableName="鸟连" VariableExpression="迸裂" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:迸裂:${var:SMN_Hotbar}:${var:SMN_Hotbar_Num}" ActionType="Variable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:龙鸟}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="4082" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${var:召唤}" ExpressionTypeL="Numeric" ExpressionR="3" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="11" VariableOp="SetNumeric" VariableName="灵攻I" VariableExpression="${var:灵攻I}-1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="54faafac-665f-43b7-a7d1-bcaf827bffc0" TriggerText="SetHotbar:血溅:${var:SMOK_UsingHotbar}:1" Enabled="False" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="419F" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="12" VariableOp="SetNumeric" VariableName="灵攻II" VariableExpression="${var:灵攻II}-1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="54faafac-665f-43b7-a7d1-bcaf827bffc0" TriggerText="SetHotbar:血溅:${var:SMOK_UsingHotbar}:1" Enabled="False" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="41A0" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="13" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:毁坏:${var:SMN_Hotbar}:${var:SMN_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="100">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:灵攻I}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="50" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="14" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" VariableOp="SetString" VariableName="鸟连" VariableExpression="迸裂" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:毁灭:${var:SMN_Hotbar}:${var:SMN_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:龙神附体}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="15" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" VariableOp="SetString" VariableName="鸟连" VariableExpression="迸裂" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:${var:鸟连}:${var:SMN_Hotbar}:${var:SMN_Hotbar_Bird}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:龙鸟}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${var:召唤}" ExpressionTypeL="Numeric" ExpressionR="3" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="16" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:灵攻I:${var:SMN_Hotbar}:${var:SMN_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="50" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="419F" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${var:召唤}" ExpressionTypeL="Numeric" ExpressionR="3" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${var:灵攻I}-${_systemtimems}}" ExpressionTypeL="Numeric" ExpressionR="30000" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:灵攻I}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="17" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:灵攻II:${var:SMN_Hotbar}:${var:SMN_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:灵攻II}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="50" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Smn}" ExpressionTypeL="String" ExpressionR="41A0" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${var:召唤}" ExpressionTypeL="Numeric" ExpressionR="3" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${var:灵攻II}-${_systemtimems}}" ExpressionTypeL="Numeric" ExpressionR="30000" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:灵攻II}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="18" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:溃烂爆发:${var:SMN_Hotbar}:${var:SMN_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="18" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:溃烂爆发}}" ExpressionTypeL="Numeric" ExpressionR="4500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:溃烂爆发}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${var:豆}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${var:豆}" ExpressionTypeL="Numeric" ExpressionR="8" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="19" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:能量吸收:${var:SMN_Hotbar}:${var:SMN_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="18" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:能量吸收}}" ExpressionTypeL="Numeric" ExpressionR="29000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:能量吸收}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${var:豆}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="20" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:三重灾祸:${var:SMN_Hotbar}:${var:SMN_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${_ffxivplayer}].level}" ExpressionTypeL="Numeric" ExpressionR="56" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:三灾}}" ExpressionTypeL="Numeric" ExpressionR="49000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:三灾}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${var:召唤}" ExpressionTypeL="Numeric" ExpressionR="3" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+                <Conditions />
+              </Action>
+              <Action OrderNumber="21" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:NEXT} ${var:GNBOK_Hotbar_C} ${var:GNBOK_Hotbar_H}" VariableOp="SetString" VariableName="鸟连" VariableExpression="迸裂" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="b1a17282-1f8c-4e0d-a752-ccc48d553d04" TriggerText="SetHotbar:龙神迸发:${var:SMN_Hotbar}:${var:SMN_Hotbar_Bird}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:召唤}" ExpressionTypeL="Numeric" ExpressionR="3" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:龙神迸发}}" ExpressionTypeL="Numeric" ExpressionR="9500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:龙神迸发}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                </Condition>
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+            <Conditions />
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="c71413e2-7a53-45f7-bfb4-1e3d6a897765" Name="量谱" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="量谱" Id="90fcb915-5003-43e1-b5e4-cd1b8234a630" RegularExpression="^.{14} 1F:.{8}:(?&lt;name&gt;[^:]+?):\w+?:(?&lt;gauge&gt;\w+?):">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="召唤" VariableExpression="${func:substring(7,1):${func:padleft(48,8):${gauge}}}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="龙鸟" VariableExpression="${func:substring(4,1):${func:padleft(48,8):${gauge}}}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+              <Action OrderNumber="3" VariableOp="SetNumeric" VariableName="豆" VariableExpression="hex2dec(${func:substring(5,1):${func:padleft(48,8):${gauge}}})" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+            <Conditions />
+          </Trigger>
+        </Triggers>
+      </Folder>
+    </Folders>
+    <Triggers />
+  </ExportedFolder>
+</TriggernometryExport>

@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder FFXIVJobFilterEnabled="True" FFXIVJobFilter="17179869184" Id="08cbaf9e-ed8a-4d4f-940e-62b1d635f96b" Name="赤魔" Enabled="false">
+    <Folders>
+      <Folder Id="90761231-bc87-4b30-951f-4a2f12c45586" Name="设置" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="改变快捷键" Id="29da42c5-c15a-4f64-84e8-58d7c6c7869d" RegularExpression="^SetHotbar:(?&lt;skill&gt;.+?):(?&lt;num1&gt;\d+):(?&lt;num2&gt;\d+)$">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${skill} ${num1} ${num2}" NamedCallbackName="command" NamedCallbackParam="/hotbar set ${skill} ${num1} ${num2}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="Hotbar" Id="15ce30a4-d61f-4f1c-851c-a16ac95a3c78" RegularExpression=".*" PeriodRefire="Deny" RefirePeriodExpression="86400000" EditAutofire="True">
+            <Actions>
+              <Action OrderNumber="1" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="RDM_Hotbar" VariableExpression="1" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="RDM_Hotbar_Num" VariableExpression="2" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableExpressionType="Numeric" VariableOp="SetNumeric" VariableName="RDM_Hotbar_Aoe" VariableExpression="4" TextAuraFontSize="8.25" TextAuraFontName="Microsoft Sans Serif" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="Reset" Id="8ee901e7-e213-4bfa-a35a-675fa44e2421" RegularExpression="^.{15}21:.{8}:4000001[02]|^.{15}00:0039:距离战斗开始还有15秒！|^.{15}00:0839:“.*?”任务结束">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:摇荡:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:GNBOK_Next}" ExpressionTypeL="String" ExpressionR="狙击弹" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤烈风:${var:RDM_Hotbar}:${var:RDM_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:GNBOK_Next}" ExpressionTypeL="String" ExpressionR="狙击弹" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="Break" Id="0ad77f64-8b91-4503-a93a-d9e455c880a0" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):(1D5[12367CDEF]|1D6[456]|4092|408[CDE]):" PrevActions="Interrupt">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar set ${var:GNBOK_Next} ${var:GNBOK_Hotbar} ${var:GNBOK_Hotbar_Num}" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="8ee901e7-e213-4bfa-a35a-675fa44e2421" TriggerText="SetHotbar:摇荡:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" TriggerForce="true" ActionType="Trigger" ExecutionDelayExpression="14500">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:GNBOK_Next}" ExpressionTypeL="String" ExpressionR="狙击弹" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="5248c011-93dd-4ed0-b2be-1904f4f85ca8" Name="#单体" Enabled="true">
+        <Folders>
+          <Folder Id="a1d7b1b2-474f-403b-814c-21c4ef316f67" Name="三连" Enabled="false">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Sequential="True" Name="连攻" Id="a0a3f5e3-d519-41a2-84b4-23f9c32d4e8a" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):(1D5C|1D69):">
+                <Actions>
+                  <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤疾风:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="${var:白}" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤闪雷:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="${var:白}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Sequential="True" Name="交击斩" Id="2de51710-4477-4297-8b4b-60a9a61f605c" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):(1D58|1D68):">
+                <Actions>
+                  <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:连攻:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="And" />
+                  </Action>
+                  <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤疾风:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" Enabled="False" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="${var:白}" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Sequential="True" Name="回刺" Id="63be1f91-b24a-4a95-a8a3-62361716e4d4" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):(1D50|1D67):">
+                <Actions>
+                  <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:鼓励:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="And" />
+                  </Action>
+                  <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:交击斩:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="800">
+                    <Condition Enabled="false" Grouping="And" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Sequential="True" Name="短兵相接" Id="7e63bfee-d90c-4990-a098-e6dc952bace3" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):1D52:">
+                <Actions>
+                  <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:回刺:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:白}" ExpressionTypeL="Numeric" ExpressionR="80" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="80" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:划圆斩:${var:RDM_Hotbar}:${var:RDM_Hotbar_Aoe}" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:白}" ExpressionTypeL="Numeric" ExpressionR="60" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="60" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+            </Triggers>
+          </Folder>
+          <Folder Id="f22acea1-8993-4754-82b1-f8942e746790" Name="触发" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Sequential="True" Name="赤飞石" Id="3b249d3a-fe20-4b13-819c-9e28169d3b35" RegularExpression="^.{14} 1[AE]:.{8}:(?&lt;CasterName&gt;.+?) (?&lt;type&gt;gains|loses) the effect of 赤飞石预备 from">
+                <Actions>
+                  <Action OrderNumber="1" LogLevel="-1" VariableOp="SetNumeric" VariableName="赤飞石" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="ade6a2da-9d65-4385-8d38-54a7b6c0698f" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" LogLevel="-1" VariableName="赤飞石" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="ade6a2da-9d65-4385-8d38-54a7b6c0698f" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="loses" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Sequential="True" Name="赤火炎" Id="ed398e8e-f520-4069-ac29-9ffc12101630" RegularExpression="^.{14} 1[AE]:.{8}:(?&lt;CasterName&gt;.+?) (?&lt;type&gt;gains|loses) the effect of 赤火炎预备 from">
+                <Actions>
+                  <Action OrderNumber="1" LogLevel="-1" VariableOp="SetNumeric" VariableName="赤火炎" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="ade6a2da-9d65-4385-8d38-54a7b6c0698f" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="gains" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" LogLevel="-1" VariableName="赤火炎" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="ade6a2da-9d65-4385-8d38-54a7b6c0698f" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="loses" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+            </Triggers>
+          </Folder>
+        </Folders>
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="连咏" Id="b90a1719-dd0b-4b74-b48a-4d56f1aac799" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):(?&lt;Red&gt;(1D5[13CDEF]|1D6[56]|4092)):">
+            <Actions>
+              <Action OrderNumber="1" LogLevel="-1" VariableOp="SetNumeric" VariableName="促进" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Red}" ExpressionTypeL="String" ExpressionR="1D5E" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" LogLevel="-1" VariableOp="SetNumeric" VariableName="飞刺" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Red}" ExpressionTypeL="String" ExpressionR="1D5D" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" LogLevel="-1" VariableOp="SetNumeric" VariableName="六分反击" VariableExpression="${_systemtimems}" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Red}" ExpressionTypeL="String" ExpressionR="1D5F" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" LogLevel="-1" VariableName="焦热" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${Red}" ExpressionTypeL="String" ExpressionR="1D5F" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Red}" ExpressionTypeL="String" ExpressionR="1D5D" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Red}" ExpressionTypeL="String" ExpressionR="1D5E" ExpressionTypeR="String" ConditionType="StringNotEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="5" LogLevel="-1" VariableOp="SetNumeric" VariableName="焦热" VariableExpression="1" TextAuraFontSize="9.07563" TextAuraFontName="宋体" ActionType="Variable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${Red}" ExpressionTypeL="String" ExpressionR="1D65" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Red}" ExpressionTypeL="String" ExpressionR="1D66" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="6" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:震荡:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="100">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:冰火}" ExpressionTypeL="String" ExpressionR="FD" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="7" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤飞石:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:焦热}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:赤飞石}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="8" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤火炎:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:焦热}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:赤火炎}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="9" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:六分反击:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:六分反击}}" ExpressionTypeL="Numeric" ExpressionR="33500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:六分反击}" ExpressionTypeL="String" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="10" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:飞刺:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:飞刺}}" ExpressionTypeL="Numeric" ExpressionR="23500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:飞刺}" ExpressionTypeL="String" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="11" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:促进:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:促进}}" ExpressionTypeL="Numeric" ExpressionR="54000" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:促进}" ExpressionTypeL="String" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:赤飞石}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    <ConditionSingle Enabled="true" ExpressionL="${evar:赤火炎}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  </ConditionGroup>
+                  <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="50" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="震荡" Id="04da8de0-215e-4572-ac22-c50da456b108" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):(1D64|1D5[67]):">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤疾风:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="10">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="${var:白}" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤闪雷:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="${var:白}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="8d5177f4-9750-4c3a-b9af-1295515c2136" Name="量谱" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="量谱" Id="a5a4a789-1293-4dda-9ecb-4c522576dc5b" RegularExpression="^.{14} 1F:.{8}:(?&lt;name&gt;[^:]+?):(?&lt;gauge&gt;\w+?):">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="黑" VariableExpression="hex2dec(${func:substring(2,2):${func:padleft(48,8):${gauge}}})" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="白" VariableExpression="hex2dec(${func:substring(4,2):${func:padleft(48,8):${gauge}}})" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="bee42975-259e-46df-a9a2-6fecb5438ed0" Name="#群体" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Sequential="True" Name="震雷烈风" Id="30db8cb8-9e41-4cf6-8ee4-32a0e5739739" RegularExpression="^.{14} 15:.{8}:(?&lt;CasterName&gt;[^:]+?):408[CD]:">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:散碎:${var:RDM_Hotbar}:${var:RDM_Hotbar_Aoe}" ActionType="Trigger" ExecutionDelayExpression="10">
+                <Condition Enabled="false" Grouping="And" />
+              </Action>
+              <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤闪雷:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" Enabled="False" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="${var:白}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="冲击" Id="2357eb60-c643-4a72-ad9f-2165fde3364a" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):(408E|1D5[DF]):">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤烈风:${var:RDM_Hotbar}:${var:RDM_Hotbar_Aoe}" ActionType="Trigger" ExecutionDelayExpression="10">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="${var:白}" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤震雷:${var:RDM_Hotbar}:${var:RDM_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="${var:白}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:六分反击:${var:RDM_Hotbar}:${var:RDM_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:六分反击}}" ExpressionTypeL="Numeric" ExpressionR="33500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:六分反击}" ExpressionTypeL="String" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:飞刺:${var:RDM_Hotbar}:${var:RDM_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${numeric:${_systemtimems}-${var:飞刺}}" ExpressionTypeL="Numeric" ExpressionR="23500" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${evar:飞刺}" ExpressionTypeL="String" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+          <Trigger Enabled="true" Sequential="True" Name="划圆斩" Id="4858ec82-bca2-4d76-b78e-1784f88f0e5c" RegularExpression="^.{14} 1[56]:.{8}:(?&lt;CasterName&gt;[^:]+?):(1D59|1D6A):">
+            <Actions>
+              <Action OrderNumber="1" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:震荡:${var:RDM_Hotbar}:${var:RDM_Hotbar_Num}" ActionType="Trigger" ExecutionDelayExpression="100">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:冰火}" ExpressionTypeL="String" ExpressionR="FD" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:划圆斩:${var:RDM_Hotbar}:${var:RDM_Hotbar_Aoe}" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:白}" ExpressionTypeL="Numeric" ExpressionR="20" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="20" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" JsonEndpointExpression="http://127.0.0.1:${_env[PostNamazu]}/command" JsonPayloadExpression="/hotbar copy 黑魔法师 4 黑魔法师 1" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="29da42c5-c15a-4f64-84e8-58d7c6c7869d" TriggerText="SetHotbar:赤烈风:${var:RDM_Hotbar}:${var:RDM_Hotbar_Aoe}" TriggerForce="active" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${var:白}" ExpressionTypeL="Numeric" ExpressionR="20" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                  <ConditionSingle Enabled="true" ExpressionL="${var:黑}" ExpressionTypeL="Numeric" ExpressionR="20" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${CasterName}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Trigger>
+        </Triggers>
+      </Folder>
+    </Folders>
+    <Triggers />
+  </ExportedFolder>
+</TriggernometryExport>
